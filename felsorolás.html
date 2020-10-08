@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+
+<html lang="hu">
+<head>
+
+<meta charset="UTF-8">
+
+</head>
+<body>
+
+<h1>Tatár Krisztián elektronikai weblapja</h1>
+<h2>Egyszerű elektronika: Tranzisztor I.</h2>
+  
+<img src="00048-tranzisztor.jpg">
+  
+<p>A tranzisztoroknak számos típusa létezik.Az egyik leggyakoribb, ún. bipoláris tranzisztort vizsgáljuk meg.Ilyen a rajz jele:</p>
+  
+<img src="00048-tranzisztor-rajzjel.jpg">
+
+<p>A tranzisztor három kivezetéssel bír, úgymint bázis (Base), kollektor (Collector) és emitter (Emitter).<br/>
+    A konvencionális megközelítés szerint az áram a pozitív oldal felől a negatív irányba folyik,<br/>
+    így az NPN tranzisztor könnyen megtanulható:<br/></p> 
+  
+  
+<ul>
+    <li>a kollektor: gyűjtő - más néven itt gyűlik az áram. Ez a láb szedi össze az áramot és innen áramlik a tranzisztorba,</li>
+	<li>az emitteren keresztül áramlik ki az áram a föld (GND vagy 0V) irányába,</li>
+    <li>a bázis a vezérlőláb, ez határozza meg, hogy a tranzisztor mit tegyen.</li>
+</ul>
+   
+<img src="00048-tranzisztor-mukodes.jpg">
+  
+<h2>Szóval mit lehet tenni vele?</h2>
+  
+<p>Először legyen a tranzisztor erősítő. A bázisára 1 mA áramot csorgassunk és a kollektor emitter közt<br/> 
+    folyjon az erősített áram. Az erősítése 50 és 500 közt lehet, típustól és kialakítástól függően: azaz 50..500 mA<br/>
+    közt várható az eredmény!<br/>
+    Fontos! Nem az írtam, hogy ennyit generál a tranzisztor, hanem ha a kollektor és az emitter közt<br/>feszültségkülönbség van, akkor a bázisáram ennyiszerese folyhat maximum (túllépve a határt<br/> a tranzisztor megsül)! Ami fontos, az a bázisba befolyó és a kollektor-emitteren folyó aránya!<br/>
+    Ez a dolog nem ennyire egyszerű. Hogy értendő az hogy ennyi áram folyik keresztül valamin?Ez még a<br/>vízanalógia esetén sem működik, hogy ennyit kényszerítünk át a szűkületen! Víz esetén is csak a<br/>nyomásra (magasságra, azaz villamosan: feszültségre) van hatásunk! Ezért fontos azt tisztázni, hogy ez az<br/>"átfolyatható áram" ez egy maximális szint, azaz határérték! A tranzisztorok hálátlan, érzékeny jószágok.<br/> Egy pici határérték túllépés és azonnal megemik a kalapjukat és kijön a működtető füst.<br/>
+
+<p>Nem olyan egszerű dolog valójában az áram szabályozása. Hiszen az ATMega chipen mit csinálunk?<br/> Ki-/bekapcsoljuk a lábat illetve magas vagy alacsony feszültségszintre rakjuk! De hogyan lesz a<br/> feszültségből áram?! - Ezt mondja ki az Ohm törvénye. Azaz használjunk ellenállást!<br/></p>
+
+<h2>A legegyszerűbb tranzisztoros áramkör</h2>
+
+<img src="00048-tranzisztor-mukodesi-minta.jpg">   
+
+
+<p>A bemenetre feszültséget kapcsolva, az R1 ellenálláson át megindul az áram. Ez persze nem nőhet az<br/> égig, mivel az ellenállás lekorlátozza. A kollektor és a tápfeszültség közé is egy ellenállás került, mert<br/> a tranzisztorral mégsem célünk a tápfeszültség és a GND rövidrezárása. Az ellenállás itt is határoló szerepet<br/> tölt be.
+   De mekkora ez a limit? Ezt természesen a feszültség és az ellenállás határozza meg. De nézzük, hogyan:<br/></p>
+
+<ul>
+   <li>A "+" feszültség a szokásos 3.3V vagy 5V. A példánkban legyen 3.3V (és a GND a 0V),</li>
+   <li>A bemeneten ideális esetben 0V vagy 3.3V lesz,</li>
+   <li>Az R1 ellenállás 1000 Ω,</li>
+   <li>Az R2 ellenálás 100 Ω.</li>
+</ul>
+
+
+<p>A maximális áram, ami a bázison át folyik, nem lehet több az ellenállás miatt, mint 3.3 mA<br/>(az Ohm-törvény alapján: I= U/R, azaz I= 3.3V / 1000Ω = 3.3mA)<br/>
+     A maximális áram a kollektor és az emitter közt akkor folyik, ha rövidzárként kapcsoljuk. Ez a 100Ω<br/> ellenállás miatt azonban ahol 3.3V-os a tápfeszültség: 33mA.<br/>
+     Fontos! A méretezéskor a legrosszabb eset elvét követtük (worst case). Így a tranzisztorunk minden<br/> körülmények közt életben marad.<br/>
+     Az elméleti tranzisztor így viselkedik. Azonban a gyakorlati egy picit másképpen. Az eddigi 3.3mA<br/> bázisáram illetve 33mA kollektoráram az NPN tranzisztoron bemutatható volt. De nézzünk egy kis<br/> gyakorlatot:<br/>
+	 Mi történik, ha a bemeneten 0V (GND) van?<br/></p>
+  
+<ul>
+   <li>A bázison át nem folyik áram,</li>
+   <li>Amíg a tranzisztor erősítőként működik, a bázison befolyó 0mA-t hiába erősíti, 0mA kollektoráram marad,</li>
+   <li>A collector és emitter közt úgy viselkedik, mintha szakadás lenne,</li>
+   <li>Az R2-n nem folyik áram,</li>
+   <li>A feszültség az ohm törvény alapján az R2-n 0V (U= I x R = 0V x 100Ω = 0mA),</li>
+   <li>A kimeneten 3.3V van, mint ahogyan az R2 túloldalán is.</li>
+</ul>
+
+<p>Mi történik, ha a bemenetre 3.3V-ot kapcsolunk:</p>
+
+<ul>
+   <li>Áram folyik az R1-en át,</li>
+   <li>Jó nagy áram folyik át a kollektortól az emiter felé,</li>
+   <li>A kollektor-emitter többé-kevésbé rövidzárként viselkedik,</li>
+   <li>Ez azt jelenti, hogy a kimeneten közel 0V jelenik meg.</li>
+</ul>
+
+<p>Sikerült előállítanunk ezzel egy jelfordítót, mert ha a bemeneten 3.3V van, a kimeneten 0V és fordítva: ha<br/> a bemeneten 0V, a kimeneten 3.3V!<br/></p>
+
+</body>
+</html>
