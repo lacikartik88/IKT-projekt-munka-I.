@@ -1,0 +1,25 @@
+body{
+	background-color: lightblue;
+	
+}
+h2{
+	margin-left: 10%;
+	font-size: 29px;
+}
+li, th{
+	margin-left: 20%;
+	color:#e64d00;
+	padding-bottom:5px;
+}
+table{
+	margin-left:15%;
+}
+a, li, th {
+	font-size: 20px;
+}
+li, th{
+	font-family: Impact, Charcoal, sans-serif;
+}
+img{
+	margin-left:30%;
+}
